@@ -8,7 +8,8 @@ class User < ApplicationRecord
     has_many :askers, through: :asked_for_relationships
 
     has_secure_password
-    validates :username, :first_name, :last_name, :password_digest, presence: true
+    
+    validates :username, :first_name, :last_name, presence: true
     validates :username, uniqueness: {case_sensitive: false}
 
 end

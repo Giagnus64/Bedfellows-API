@@ -10,9 +10,9 @@ User.destroy_all()
 Relationship.destroy_all()
 
 
-u1 = User.create(first_name: "jack", username:"jman")
-u2 = User.create(first_name: "jill", username: "jgurl")
-u3 = User.create(first_name: 'bob', username: "Bboy")
+u1 = User.create(first_name: "jack", last_name: "dude", username:"jman", password:"yes")
+u2 = User.create(first_name: "jill", last_name: "bro", username: "jgurl", password: "yes")
+u3 = User.create(first_name: 'bob', last_name: "man", username: "Bboy", password: "yes")
 
 r1 = Relationship.create(asker_id: u1.id, askee_id: u2.id, nickname:"jacknJill")
 r2 = Relationship.create(asker_id: u2.id, askee_id: u3.id, nickname:"JillnBab")
