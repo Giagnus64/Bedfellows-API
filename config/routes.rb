@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :relationships
+  resources :outings
+  resources :relationships, except: [:edit, :new, :index]
   resources :users, except: [:edit, :new]
 
   post '/login', to: 'login#create', as: 'login' 
