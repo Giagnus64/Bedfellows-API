@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-    skip_before_action :authorized
 
     def create 
         relationship = Relationship.create(rel_params)
@@ -14,8 +13,8 @@ class RelationshipsController < ApplicationController
         relationship = Relationship.find(params[:id])
         options = {
             include: {
-            asker: {except: [:updated_at, :created_at, :password]},
-            askee: {except: [:updated_at, :created_at, :password]},
+            asker: {except: [:updated_at, :created_at, :password_digest]},
+            askee: {except: [:updated_at, :created_at, :password_digest]},
             }, 
             except: [:created_at, :updated_at]
         }
@@ -23,22 +22,22 @@ class RelationshipsController < ApplicationController
     end
     
     def update
-        user = User.find(params[:id])
-        user.update(user_params)
+        relationship = Relationship.find(params[:id])
+        relationship.update(rel_params)
         options = {
-            except: [:created_at, :updated_at, :password_digest]
+            except: [:created_at, :updated_at]
         } 
-        if user.valid?
-            render json: {user: UserSerializer.new(user).to_serialized_json(options)}, status: :ok
+        if relationship.valid?
+            render json: RelationshipSerializer.new(relationship).to_serialized_json(options), status: :ok
         else 
-            render json: user.errors.full_messages
+            render json: relationship.errors.full_messages
         end 
     end
 
     def destroy
-        user = User.find(params[:id])
-        user.destroy()
-        render json: {message: "#{user.username} was destroyed"}
+        relationship = Relationship.find(params[:id])
+        relationship.destroy()
+        render json: {message: "#{relationship.nickname} was destroyed"}
     end
 
     private
