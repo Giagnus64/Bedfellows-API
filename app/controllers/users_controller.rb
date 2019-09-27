@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         user = User.create(user_params)
         if(user.valid?)
             token = encode_token({user_id: user.id})
-            render json: {user: UserSerializer.new(user).to_serialized_json({}), token: token}, status: :created 
+            render json: {user: user, token: token}, status: :created 
         else 
             render json: user.errors.full_messages
         end 
