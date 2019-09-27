@@ -9,12 +9,12 @@ class UsersController < ApplicationController
     end
 
     def create 
-        @user = User.create(user_params)
-        if(@user.valid?)
-            @token = encode_token(user_id: @user.id)
-            render json: {user: UserSerializer.new(@user).to_serialized_json, token: @token}, status: :created 
+        user = User.create(user_params)
+        if(user.valid?)
+            token = encode_token({user_id: user.id})
+            render json: {user: UserSerializer.new(user).to_serialized_json({}), token: token}, status: :created 
         else 
-            render json: @user.errors.full_messages
+            render json: user.errors.full_messages
         end 
     end
     
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
             except: [:created_at, :updated_at, :password_digest]
         } 
         if user.valid?
-            render json: {user: UserSerializer.new(user).to_serialized_json(options)}, status: :accepted 
+            render json: {user: UserSerializer.new(user).to_serialized_json(options)}, status: :ok
         else 
             render json: user.errors.full_messages
         end 
