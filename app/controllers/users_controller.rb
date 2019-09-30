@@ -15,8 +15,16 @@ class UsersController < ApplicationController
         user = User.create(new_user_params)
         if(user.valid?)
             token = encode_token({user_id: user.id})
-            userHash = user.as_json(except: [:password_digest, :created_at, :updated_at])
-             userHash[:token] = token
+            options ={
+                include: {
+            asked_for_relationships: {except: [:updated_at, :created_at]},
+            asking_for_relationships: {except: [:updated_at, :created_at]},
+            },
+            except: [:created_at, :updated_at, :password_digest]
+            }
+            userHash = user.as_json(options)
+            puts userHash
+            userHash[:token] = token
             render json: userHash, status: :created
         else
             render json: user.errors.full_messages
