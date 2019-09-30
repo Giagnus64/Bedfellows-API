@@ -15,12 +15,20 @@ class UsersController < ApplicationController
         user = User.create(new_user_params)
         if(user.valid?)
             token = encode_token({user_id: user.id})
-            options ={
+             options = {
                 include: {
-            asked_for_relationships: {except: [:updated_at, :created_at]},
-            asking_for_relationships: {except: [:updated_at, :created_at]},
-            },
-            except: [:created_at, :updated_at, :password_digest]
+                    asked_for_relationships: {
+                            include: {
+                                asker: {except:[:created_at, :updated_at, :password_digest]}
+                            }, except: [:created_at, :updated_at, :password_digest]
+                    },
+                    asking_for_relationships: {
+                        include: {
+                            askee: {except:[:created_at, :updated_at, :password_digest]}
+                        }, except: [:updated_at, :created_at]
+                    },
+                },
+                except: [:created_at, :updated_at, :password_digest]
             }
             userHash = user.as_json(options)
             puts userHash
@@ -33,13 +41,21 @@ class UsersController < ApplicationController
 
     def show
         user = User.find(params[:id])
-         options = {
-            include: {
-            asked_for_relationships: {except: [:updated_at, :created_at]},
-            asking_for_relationships: {except: [:updated_at, :created_at]},
-            },
-            except: [:created_at, :updated_at, :password_digest]
-        }
+          options = {
+                include: {
+                    asked_for_relationships: {
+                            include: {
+                                asker: {except:[:created_at, :updated_at, :password_digest]}
+                            }, except: [:created_at, :updated_at, :password_digest]
+                    },
+                    asking_for_relationships: {
+                        include: {
+                            askee: {except:[:created_at, :updated_at, :password_digest]}
+                        }, except: [:updated_at, :created_at]
+                    },
+                },
+                except: [:created_at, :updated_at, :password_digest]
+            }
         render json: UserSerializer.new(user).to_serialized_json(options)
     end
 
