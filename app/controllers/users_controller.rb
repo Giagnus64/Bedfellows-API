@@ -15,8 +15,9 @@ class UsersController < ApplicationController
         user = User.create(new_user_params)
         if(user.valid?)
             token = encode_token({user_id: user.id})
-            user.password_digest = "nice try"
-            render json: {user: user, token: token}, status: :created
+            userHash = user.as_json(except: [:password_digest, :created_at, :updated_at])
+             userHash[:token] = token
+            render json: userHash, status: :created
         else
             render json: user.errors.full_messages
         end
