@@ -27,7 +27,7 @@ r5 = Relationship.create(asker_id: u3.id, askee_id: u7.id, nickname:"ShrekBob", 
 r6 = Relationship.create(asker_id: u5.id, askee_id: u4.id, nickname:"Hobbitses", status: "confirmed",anniversary: "2003-10-03 12:00:00")
 r7 = Relationship.create(asker_id: u7.id, askee_id: u8.id, nickname:"Ogre Love", status: "confirmed",anniversary: "2003-10-03 12:00:00")
 r7 = Relationship.create(asker_id: u5.id, askee_id: u8.id, nickname:"Ogre Hobbit Affair", status: "denied")
-r8 = Relationship.create(asker_id: u3.id, askee_id: u7.id, nickname:"Best Buds", status: "pending")
+r8 = Relationship.create(asker_id: u3.id, askee_id: u5.id, nickname:"Best Buds", status: "pending")
 
 
 
