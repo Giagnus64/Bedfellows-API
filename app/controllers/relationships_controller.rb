@@ -25,6 +25,10 @@ class RelationshipsController < ApplicationController
         relationship = Relationship.find(params[:id])
         relationship.update(rel_params)
         options = {
+            include: {
+            asker: {except: [:updated_at, :created_at, :password_digest]},
+            askee: {except: [:updated_at, :created_at, :password_digest]},
+            },
             except: [:created_at, :updated_at]
         } 
         if relationship.valid?
