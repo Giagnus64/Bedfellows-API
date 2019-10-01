@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 2019_09_27_191929) do
 
   create_table "relationships", force: :cascade do |t|
     t.datetime "anniversary"
-    t.datetime "start_date"
-    t.datetime "first_date"
     t.string "nickname"
     t.integer "asker_id"
     t.integer "askee_id"

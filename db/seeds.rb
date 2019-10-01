@@ -10,14 +10,28 @@ User.destroy_all()
 Relationship.destroy_all()
 
 
-u1 = User.create(first_name: "jack", last_name: "dude", username:"jman", password:"yes")
-u2 = User.create(first_name: "jill", last_name: "bro", username: "jgurl", password: "yes")
-u3 = User.create(first_name: 'bob', last_name: "man", username: "Bboy", password: "yes")
-u4 = User.create(first_name: 'John', last_name: "Boydude", username: "J", password: "yes")
+u1 = User.create(first_name: "Jack", last_name: "Slippy", username:"jman", password:"yes")
+u2 = User.create(first_name: "Jill", last_name: "Bippy", username: "jgurl", password: "yes")
+u3 = User.create(first_name: 'Bob', last_name: "Baran", username: "Bob", password: "yes")
+u4 = User.create(first_name: 'Frodo', last_name: "Baggins", username: "Hobbit", password: "yes")
+u5 = User.create(first_name: 'Sam', last_name: "Gamgee", username:"RingBoi", password:"yes")
+u6 = User.create(first_name: 'Barbra', last_name: "Ann", username:"DreamGurl", password:"yes")
+u7 = User.create(first_name: 'Shrek', last_name: "Ogreman", username:"BigGreen", password:"yes")
+u8 = User.create(first_name: 'Fiona', last_name: "Ogreman", username:"SwampGurl", password:"yes")
 
-r1 = Relationship.create(asker_id: u1.id, askee_id: u2.id, nickname:"jacknJill", status: "confirmed")
+r1 = Relationship.create(asker_id: u1.id, askee_id: u2.id, nickname:"jacknJill", status: "confirmed", anniversary: "2018-10-03 12:00:00")
 r2 = Relationship.create(asker_id: u2.id, askee_id: u3.id, nickname:"JillnBab", status: "pending")
 r3 = Relationship.create(asker_id: u3.id, askee_id: u1.id, nickname: "JacknBOBBBYY", status: "denied")
+r4 = Relationship.create(asker_id: u3.id, askee_id: u6.id, nickname:"BobBra", status: "confirmed", anniversary: "2018-10-03 12:00:00")
+r5 = Relationship.create(asker_id: u3.id, askee_id: u7.id, nickname:"ShrekBob", status: "pending")
+r6 = Relationship.create(asker_id: u5.id, askee_id: u4.id, nickname:"Hobbitses", status: "confirmed",anniversary: "2003-10-03 12:00:00")
+r7 = Relationship.create(asker_id: u7.id, askee_id: u8.id, nickname:"Ogre Love", status: "confirmed",anniversary: "2003-10-03 12:00:00")
+r7 = Relationship.create(asker_id: u5.id, askee_id: u8.id, nickname:"Ogre Hobbit Affair", status: "denied")
+r8 = Relationship.create(asker_id: u3.id, askee_id: u7.id, nickname:"Best Buds", status: "pending")
+
+
+
+
 
 o1 = Outing.create(relationship_id: r1.id, time: "2019-12-03 20:00:00", activity:"Bowling")
 o2 = Outing.create(relationship_id: r1.id, time: "2019-12-20 20:00:00", activity:"Axe Throwing")
