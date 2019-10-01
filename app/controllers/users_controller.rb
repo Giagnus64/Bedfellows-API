@@ -4,7 +4,19 @@ class UsersController < ApplicationController
     def index
         users = User.all()
         render json: users.to_json(
-            only: [:username, :id]
+            only: [:username, :id, :first_name, :last_name]
+        )
+    end
+
+    def stranger_index
+        currUser = User.find(params[:id])
+        askersIds = currUser.askers.map {|asker| asker.id}        
+        askeesIds = currUser.askees.map {|askee| askee.id}        
+        filteredUsers = User.all.filter do |user|
+            !askeesIds.include?(user.id) && !askersIds.include?(user.id) && currUser.id != user.id
+        end
+        render json: filteredUsers.to_json(
+            only: [:username, :id, :first_name, :last_name]
         )
     end
 

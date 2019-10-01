@@ -2,5 +2,5 @@ class Relationship < ApplicationRecord
     belongs_to :asker, class_name: 'User'
     belongs_to :askee, class_name: 'User'
     has_many :dates
-    validates :nickname, presence: true
+
 end

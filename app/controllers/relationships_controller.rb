@@ -47,7 +47,7 @@ class RelationshipsController < ApplicationController
     private
     
     def rel_params
-        params.require(:relationship).permit(:asker_id, :askee_id, :anniversary, :start_date, :first_date, :nickname)
+        params.require(:relationship).permit(:asker_id, :askee_id, :anniversary, :nickname, :status)
     end
 
 end
