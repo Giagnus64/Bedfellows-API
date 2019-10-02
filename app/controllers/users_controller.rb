@@ -4,7 +4,19 @@ class UsersController < ApplicationController
     def index
         users = User.all()
         render json: users.to_json(
-            only: [:username, :id]
+            only: [:username, :id, :first_name, :last_name]
+        )
+    end
+
+    def stranger_index
+        currUser = User.find(params[:id])
+        askersIds = currUser.askers.map {|asker| asker.id}        
+        askeesIds = currUser.askees.map {|askee| askee.id}        
+        filteredUsers = User.all.filter do |user|
+            !askeesIds.include?(user.id) && !askersIds.include?(user.id) && currUser.id != user.id
+        end
+        render json: filteredUsers.to_json(
+            only: [:username, :id, :first_name, :last_name]
         )
     end
 
@@ -19,12 +31,14 @@ class UsersController < ApplicationController
                 include: {
                     asked_for_relationships: {
                             include: {
-                                asker: {except:[:created_at, :updated_at, :password_digest]}
+                                asker: {except:[:created_at, :updated_at, :password_digest]},
+                                outings: {except: [:created_at, :updated_at]},
                             }, except: [:created_at, :updated_at, :password_digest]
                     },
                     asking_for_relationships: {
                         include: {
-                            askee: {except:[:created_at, :updated_at, :password_digest]}
+                            askee: {except:[:created_at, :updated_at, :password_digest]},
+                            outings: {except: [:created_at, :updated_at]},
                         }, except: [:updated_at, :created_at]
                     },
                 },
@@ -35,7 +49,7 @@ class UsersController < ApplicationController
             userHash[:token] = token
             render json: userHash, status: :created
         else
-            render json: user.errors.full_messages
+            render json: {messages: user.errors.full_messages}
         end
     end
 
@@ -45,12 +59,14 @@ class UsersController < ApplicationController
                 include: {
                     asked_for_relationships: {
                             include: {
-                                asker: {except:[:created_at, :updated_at, :password_digest]}
+                                asker: {except:[:created_at, :updated_at, :password_digest]},
+                                outings: {except: [:created_at, :updated_at]},
                             }, except: [:created_at, :updated_at, :password_digest]
                     },
                     asking_for_relationships: {
                         include: {
-                            askee: {except:[:created_at, :updated_at, :password_digest]}
+                            askee: {except:[:created_at, :updated_at, :password_digest]},
+                            outings: {except: [:created_at, :updated_at]},
                         }, except: [:updated_at, :created_at]
                     },
                 },

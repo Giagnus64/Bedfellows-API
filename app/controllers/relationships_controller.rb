@@ -15,6 +15,7 @@ class RelationshipsController < ApplicationController
             include: {
             asker: {except: [:updated_at, :created_at, :password_digest]},
             askee: {except: [:updated_at, :created_at, :password_digest]},
+            outings: {except: [:created_at, :updated_at]},
             }, 
             except: [:created_at, :updated_at]
         }
@@ -25,6 +26,11 @@ class RelationshipsController < ApplicationController
         relationship = Relationship.find(params[:id])
         relationship.update(rel_params)
         options = {
+            include: {
+            asker: {except: [:updated_at, :created_at, :password_digest]},
+            askee: {except: [:updated_at, :created_at, :password_digest]},
+            outings: {except: [:created_at, :updated_at]},
+            },
             except: [:created_at, :updated_at]
         } 
         if relationship.valid?
@@ -43,7 +49,7 @@ class RelationshipsController < ApplicationController
     private
     
     def rel_params
-        params.require(:relationship).permit(:asker_id, :askee_id, :anniversary, :start_date, :first_date, :nickname)
+        params.require(:relationship).permit(:asker_id, :askee_id, :anniversary, :nickname, :status)
     end
 
 end
