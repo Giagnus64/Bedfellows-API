@@ -25,7 +25,7 @@ class LoginController < ApplicationController
             userHash[:token] = token
             render json: userHash, status: :accepted
         else
-            render json: {message: "Invalid Username or Password! Please try again!"}, status: :unauthorized
+            render json: {messages: ["Invalid Username or Password! Please try again!"]}, status: :unauthorized
         end
     end
 

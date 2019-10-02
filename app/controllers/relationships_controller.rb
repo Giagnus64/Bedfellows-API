@@ -15,6 +15,7 @@ class RelationshipsController < ApplicationController
             include: {
             asker: {except: [:updated_at, :created_at, :password_digest]},
             askee: {except: [:updated_at, :created_at, :password_digest]},
+            outings: {except: [:created_at, :updated_at]},
             }, 
             except: [:created_at, :updated_at]
         }
@@ -28,6 +29,7 @@ class RelationshipsController < ApplicationController
             include: {
             asker: {except: [:updated_at, :created_at, :password_digest]},
             askee: {except: [:updated_at, :created_at, :password_digest]},
+            outings: {except: [:created_at, :updated_at]},
             },
             except: [:created_at, :updated_at]
         } 
