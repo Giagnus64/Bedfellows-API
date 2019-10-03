@@ -20,6 +20,11 @@ class UsersController < ApplicationController
         )
     end
 
+    def partner_index
+        currUser = User.find(params[:id])
+        render json: UserSerializer.new(currUser).get_serialized_partners
+    end
+
     def outings_index
         currUser = User.find(params[:id])
         render json: OutingSerializer.new(currUser.get_all_outings).get_serialized

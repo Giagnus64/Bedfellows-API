@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-
+    
     def create 
         relationship = Relationship.create(rel_params)
         if(relationship.valid?)
@@ -8,6 +8,7 @@ class RelationshipsController < ApplicationController
             render json: relationship.errors.full_messages
         end 
     end
+
     
     def show
         relationship = Relationship.find(params[:id])

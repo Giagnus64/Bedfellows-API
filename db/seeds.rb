@@ -26,18 +26,18 @@ r4 = Relationship.create(asker_id: u3.id, askee_id: u6.id, nickname:"BobBra", st
 r5 = Relationship.create(asker_id: u3.id, askee_id: u7.id, nickname:"ShrekBob", status: "pending")
 r6 = Relationship.create(asker_id: u5.id, askee_id: u4.id, nickname:"Hobbitses", status: "confirmed",anniversary: "2003-10-03 12:00:00")
 r7 = Relationship.create(asker_id: u7.id, askee_id: u8.id, nickname:"Ogre Love", status: "confirmed",anniversary: "2003-10-03 12:00:00")
-r7 = Relationship.create(asker_id: u5.id, askee_id: u8.id, nickname:"Ogre Hobbit Affair", status: "denied")
-r8 = Relationship.create(asker_id: u3.id, askee_id: u5.id, nickname:"Best Buds", status: "pending")
+r8 = Relationship.create(asker_id: u5.id, askee_id: u8.id, nickname:"Ogre Hobbit Affair", status: "denied")
+r9 = Relationship.create(asker_id: u3.id, askee_id: u5.id, nickname:"Best Buds", status: "pending")
 
 
 
 
 
 o1 = Outing.create(relationship_id: r1.id, time: "2019-12-03 20:00:00", activity:"Bowling", location: "Suncoast")
-o2 = Outing.create(relationship_id: r1.id, time: "2019-12-20 20:00:00", activity:"Axe Throwing", location: "Dumbo Axe Haus")
-o3 = Outing.create(relationship_id: r3.id, time: "2019-05-03 20:00:00", activity:"Bungee Jumping", location: "Brooklyn Bridge")
+o2 = Outing.create(relationship_id: r6.id, time: "2019-12-20 20:00:00", activity:"Axe Throwing", location: "Dumbo Axe Haus")
+o3 = Outing.create(relationship_id: r4.id, time: "2019-05-03 20:00:00", activity:"Bungee Jumping", location: "Brooklyn Bridge")
 o4 = Outing.create(relationship_id: r4.id, time: "2018-12-20 20:00:00", activity:"Ice Cream Eating", location: "Ample Hills")
-o5 = Outing.create(relationship_id: r1.id, time: "2016-11-03 20:00:00", activity:"Hot Dog Eating", location: "Mah Swamp")
-o6 = Outing.create(relationship_id: r5.id, time: "2019-10-20 20:00:00", activity:"Movies and Dinner", location: "Nighthawk")
-o7 = Outing.create(relationship_id: r2.id, time: "2019-01-24 20:00:00", activity:"Netflix And Chill", location: "Jill's Place")
+o5 = Outing.create(relationship_id: r7.id, time: "2016-11-03 20:00:00", activity:"Hot Dog Eating", location: "Mah Swamp")
+o6 = Outing.create(relationship_id: r6.id, time: "2019-10-20 20:00:00", activity:"Movies and Dinner", location: "Nighthawk")
+o7 = Outing.create(relationship_id: r1.id, time: "2019-01-24 20:00:00", activity:"Netflix And Chill", location: "Jill's Place")
  
