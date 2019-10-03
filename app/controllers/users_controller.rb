@@ -20,6 +20,11 @@ class UsersController < ApplicationController
         )
     end
 
+    def outings_index
+        currUser = User.find(params[:id])
+        render json: OutingSerializer.new(currUser.get_all_outings).get_serialized
+    end
+
     def create
         userPassword = params[:password]
         new_user_params = user_params

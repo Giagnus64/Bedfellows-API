@@ -33,7 +33,11 @@ r8 = Relationship.create(asker_id: u3.id, askee_id: u5.id, nickname:"Best Buds",
 
 
 
-o1 = Outing.create(relationship_id: r1.id, time: "2019-12-03 20:00:00", activity:"Bowling")
-o2 = Outing.create(relationship_id: r1.id, time: "2019-12-20 20:00:00", activity:"Axe Throwing")
-o3 = Outing.create(relationship_id: r2.id, time: "2019-11-24 20:00:00", activity:"Netflix And Chill")
+o1 = Outing.create(relationship_id: r1.id, time: "2019-12-03 20:00:00", activity:"Bowling", location: "Suncoast")
+o2 = Outing.create(relationship_id: r1.id, time: "2019-12-20 20:00:00", activity:"Axe Throwing", location: "Dumbo Axe Haus")
+o3 = Outing.create(relationship_id: r3.id, time: "2019-05-03 20:00:00", activity:"Bungee Jumping", location: "Brooklyn Bridge")
+o4 = Outing.create(relationship_id: r4.id, time: "2018-12-20 20:00:00", activity:"Ice Cream Eating", location: "Ample Hills")
+o5 = Outing.create(relationship_id: r1.id, time: "2016-11-03 20:00:00", activity:"Hot Dog Eating", location: "Mah Swamp")
+o6 = Outing.create(relationship_id: r5.id, time: "2019-10-20 20:00:00", activity:"Movies and Dinner", location: "Nighthawk")
+o7 = Outing.create(relationship_id: r2.id, time: "2019-01-24 20:00:00", activity:"Netflix And Chill", location: "Jill's Place")
  
