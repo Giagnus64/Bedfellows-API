@@ -17,18 +17,26 @@ class UserSerializer
         askingRels = @user.asking_for_relationships.select do |rel|
             rel.status == "confirmed"
         end
-        askingPartners = askingRels.map do |rel|
-             {partner:rel.askee.slice(:first_name, :last_name), relationship_id: rel.id}
+        if askingRels.size != 0
+            askingPartners = askingRels.map do |rel|
+                {partner:rel.askee.slice(:first_name, :last_name), relationship_id: rel.id}
+            end
+            return askingPartners
         end
-        return askingPartners
+        return []
+        
     end
     def get_asking_partners
         askedRels = @user.asked_for_relationships.select do |rel|
             rel.status == "confirmed"
         end
-        askedPartners = askedRels.map do |rel|
-            hash = {partner:rel.asker.slice(:first_name, :last_name), relationship_id:rel_id}
+        if askedRels.size != 0
+            askedPartners = askedRels.map do |rel|
+                hash = {partner:rel.asker.slice(:first_name, :last_name), relationship_id:rel.id}
+            end
+            return askedPartners
         end
+        return []
     end
 
 end
