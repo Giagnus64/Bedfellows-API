@@ -8,6 +8,7 @@
 
 User.destroy_all()
 Relationship.destroy_all()
+Outing.destroy_all()
 
 
 u1 = User.create(first_name: "Jack", last_name: "Slippy", username:"jman", password:"yes")
